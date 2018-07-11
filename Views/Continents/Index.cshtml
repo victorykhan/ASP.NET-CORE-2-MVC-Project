@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ElectoApp.Models.Continent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Continent Demarcations</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    
+                </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContinentName)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>

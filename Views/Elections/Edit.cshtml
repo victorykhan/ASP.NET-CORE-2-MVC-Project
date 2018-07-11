@@ -1,0 +1,49 @@
+﻿@model ElectoApp.Models.Election
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Election</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ElectionId" />
+            <div class="form-group">
+                <label asp-for="ElectionType" class="control-label"></label>
+                <select asp-for="ElectionType" class="form-control"></select>
+                <span asp-validation-for="ElectionType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreviousElectionDate" class="control-label"></label>
+                <input asp-for="PreviousElectionDate" class="form-control" />
+                <span asp-validation-for="PreviousElectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ElectionDate" class="control-label"></label>
+                <input asp-for="ElectionDate" class="form-control" />
+                <span asp-validation-for="ElectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryName" class="control-label"></label>
+                <input asp-for="CountryName" class="form-control" />
+                <span asp-validation-for="CountryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

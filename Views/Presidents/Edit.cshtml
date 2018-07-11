@@ -1,0 +1,79 @@
+﻿@model ElectoApp.Models.President
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>President</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PresidentId" />
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssumedOffice" class="control-label"></label>
+                <input asp-for="AssumedOffice" class="form-control" />
+                <span asp-validation-for="AssumedOffice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeTerms" class="control-label"></label>
+                <select asp-for="OfficeTerms" class="form-control"></select>
+                <span asp-validation-for="OfficeTerms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecededBy" class="control-label"></label>
+                <input asp-for="PrecededBy" class="form-control" />
+                <span asp-validation-for="PrecededBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresCountry" class="control-label"></label>
+                <input asp-for="PresCountry" class="form-control" />
+                <span asp-validation-for="PresCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresCapital" class="control-label"></label>
+                <input asp-for="PresCapital" class="form-control" />
+                <span asp-validation-for="PresCapital" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresContinent" class="control-label"></label>
+                <input asp-for="PresContinent" class="form-control" />
+                <span asp-validation-for="PresContinent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoliticalParty" class="control-label"></label>
+                <input asp-for="PoliticalParty" class="form-control" />
+                <span asp-validation-for="PoliticalParty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Publisher" class="control-label"></label>
+                <input asp-for="Publisher" class="form-control" />
+                <span asp-validation-for="Publisher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

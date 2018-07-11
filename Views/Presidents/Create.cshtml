@@ -1,0 +1,236 @@
+﻿@model ElectoApp.Models.President
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+
+
+
+<h2>Create</h2>
+
+<h4>President</h4>
+<hr />
+<div class="row" style="background-color:gray;">
+    <div class="col-md-10">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresCountry" class="control-label"></label>
+                <select asp-for="PresCountry" id="CountryId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfCountry,"CountryId","CountryName"))"></select>
+                <span asp-validation-for="PresCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresCapital" class="control-label"></label>
+                <select asp-for="PresCapital" id="CapitalCityId" class="form-control" asp-items="@(new SelectList(string.Empty,"CapitalCityId","CapitalCityName"))"></select>
+                <span asp-validation-for="PresCapital" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresContinent" class="control-label"></label>
+                <select asp-for="PresContinent" id="ContinentId" class="form-control" asp-items="@(new SelectList(string.Empty,"ContinentId","ContinentName"))"></select>
+                <span asp-validation-for="PresContinent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssumedOffice" class="control-label"></label>
+                <input type="text" asp-for="AssumedOffice" id="datepicker" class="form-control" placeholder="The date must be today or in the past " />
+                <span id="offdate" asp-validation-for="AssumedOffice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeTerms" class="control-label"></label>
+                <select asp-for="OfficeTerms" class="form-control" asp-items="Html.GetEnumSelectList<Terms>()">
+                    <option selected="selected" value="">Please select term</option>
+                </select>
+                <span asp-validation-for="OfficeTerms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecededBy" class="control-label"></label>
+                <input asp-for="PrecededBy" class="form-control" placeholder="the name of the former President" />
+                <span asp-validation-for="PrecededBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input type="file" name="Photo" asp-for="Photo" class="form-control" id="fileUpload" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="image-holder">
+
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <label asp-for="PoliticalParty" class="control-label"></label>
+                <input asp-for="PoliticalParty" class="form-control" />
+                <span asp-validation-for="PoliticalParty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input type="hidden" asp-for="Publisher" class="form-control" value="@UserManager.GetUserName(User)" />
+                <span asp-validation-for="Publisher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input id="presubmit" type="submit" value="Create" class="btn btn-success" disabled="disabled" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/dot-luv/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.3.5/cropper.min.css">
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"
+            integrity="sha256-DI6NdAhhFRnO2k51mumYeDShet3I8AKCQf/tf7ARNhI="
+            crossorigin="anonymous"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $("#datepicker").datepicker({
+                numberOfMonths: 2,
+                showButtonPanel: true
+            });
+
+
+
+        });
+
+        $("#fileUpload").on('change', function () {
+            //Get count of selected files
+            var countFiles = $(this)[0].files.length;
+            var imgPath = $(this)[0].value;
+            var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+            var image_holder = $("#image-holder");
+            image_holder.empty();
+            if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+                if (typeof (FileReader) != "undefined") {
+                    //loop for each file selected for uploaded.
+                    for (var i = 0; i < countFiles; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $("<img />", {
+                                "src": e.target.result,
+                                "class": "thumb-image",
+                                "width": 200
+
+                            }).appendTo(image_holder);
+                        }
+                        image_holder.show();
+                        reader.readAsDataURL($(this)[0].files[i]);
+                    }
+                } else {
+                    alert("This browser does not support FileReader.");
+                }
+            } else {
+                alert("Pls select only images");
+            }
+        });
+
+
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var mytoday = new Date();
+            var previousDate = "";
+
+
+            $("#datepicker").change(function () {
+
+                previousDate = Date.parse($("#datepicker").val());
+
+                if (previousDate > mytoday) {
+                    $("#offdate").text("You can not assume office in a  FUTURE DATE ");
+
+
+                }
+                else {
+                    $("#presubmit").removeAttr("disabled");
+
+
+
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //var items = "<option value='0'>Select Capital</option>"
+            //$('#CapitalCityId').html(items);
+
+
+             $('#CountryId').change(function () {
+            var url = '@Url.Content("~/")' + "Presidents/GetCapital";
+            var ddlsource = "#CountryId";
+            $.getJSON(url, { CountryId: $(ddlsource).val() }, function (data) {
+
+                var items = '';
+                $("#CapitalCityId").empty();
+                $.each(data, function (i, capital) {
+                    items += "<option value='" + capital.value + "'>" + capital.text + "</option>";
+
+                });
+                $('#CapitalCityId').html(items);
+            });
+
+
+        });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        //$(document).ready(function () {
+
+        //    var items = "<option value='0'>Select Continent</option>"
+        //    $('#ContinentId').html(items);
+
+        //});
+        $('#CountryId').change(function () {
+            var url = '@Url.Content("~/")' + "Presidents/GetContinent";
+            var ddlsource = "#CountryId";
+            $.getJSON(url, { CountryId: $(ddlsource).val() }, function (data) {
+
+                var items = '';
+                $("#ContinentId").empty();
+                $.each(data, function (i, continent) {
+                    items += "<option value='" + continent.value + "'>" + continent.text + "</option>";
+
+                });
+                $('#ContinentId').html(items);
+            });
+
+
+        });
+    </script>
+}

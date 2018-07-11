@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ElectoApp.Models.Election>
+
+
+
+    <div class="cong col-lg-3">
+        <img  src="~/images/el1.jpg" alt="Parliament" width="200" height="100" />
+        <div>
+            <h2>Congressional</h2>
+            @foreach (var item in Model)
+            {
+            <div>
+                <a asp-action="Details" asp-route-id="@item.ElectionId">
+                    @item.CountryName
+                    <span class="badge badge-primary">Election Date: @Html.DisplayFor(modelItem => item.ElectionDate)</span>
+                    </a>
+            </div>
+            
+            <hr />
+        }
+            <a href="/Elections/Index" class=" load btn btn-primary">Load more..</a>
+        </div>
+    </div>

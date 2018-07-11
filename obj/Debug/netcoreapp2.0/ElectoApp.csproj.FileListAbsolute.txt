@@ -1,0 +1,35 @@
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.deps.json
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.runtimeconfig.json
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.runtimeconfig.dev.json
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.dll
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.pdb
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.csproj.CoreCompileInputs.cache
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.AssemblyInfoInputs.cache
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.AssemblyInfo.cs
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.dll
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.pdb
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoApp/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.csprojResolveAssemblyReference.cache
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.deps.json
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.runtimeconfig.json
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.runtimeconfig.dev.json
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.dll
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.pdb
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.csproj.CoreCompileInputs.cache
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.AssemblyInfoInputs.cache
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.AssemblyInfo.cs
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.dll
+C:/Users/Professor/Documents/Visual Studio 2017/CORE/ElectoAppLinux/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.pdb
+/home/professor/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.deps.json
+/home/professor/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.runtimeconfig.json
+/home/professor/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.runtimeconfig.dev.json
+/home/professor/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.dll
+/home/professor/ElectoApp/bin/Debug/netcoreapp2.0/ElectoApp.pdb
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.csprojAssemblyReference.cache
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.csproj.CoreCompileInputs.cache
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.AssemblyInfoInputs.cache
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.AssemblyInfo.cs
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.dll
+/home/professor/ElectoApp/obj/Debug/netcoreapp2.0/ElectoApp.pdb

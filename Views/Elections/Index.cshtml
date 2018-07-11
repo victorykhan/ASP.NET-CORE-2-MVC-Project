@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ElectoApp.Models.Election>
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h2>Upcoming Worldwide Elections</h2>
+
+    <p>
+        <a asp-action="Create">Publish New Elections</a>
+    </p>
+
+
+
+    <div id="accordion">
+        @foreach (var item in Model)
+        {
+
+
+            <h3><span> @Html.DisplayFor(modelItem => item.ElectionType)</span> in <span> @Html.DisplayFor(modelItem => item.CountryName)</span></h3>
+            <div>
+
+
+                <p><b>Last Election Date:</b> @Html.DisplayFor(modelItem => item.PreviousElectionDate)</p>
+
+                <p><b>Next Election Date:</b> @Html.DisplayFor(modelItem => item.ElectionDate)</p>
+
+
+
+            </div>
+        }
+    </div>
+
+}
+
+
+else
+{
+    <h2>Upcoming Worldwide Elections</h2>
+    <div id="accordion">
+        @foreach (var item in Model)
+        {
+
+
+            <h3><span> @Html.DisplayFor(modelItem => item.ElectionType)</span> in <span> @Html.DisplayFor(modelItem => item.CountryName)</span></h3>
+            <div>
+
+
+                <p><b>Last Election Date:</b> @Html.DisplayFor(modelItem => item.PreviousElectionDate)</p>
+
+                <p><b>Next Election Date:</b> @Html.DisplayFor(modelItem => item.ElectionDate)</p>
+
+
+
+            </div>
+        }
+    </div>
+
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/start/jquery-ui.css">
+@section Scripts {
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#accordion").accordion();
+        });
+    </script>
+
+
+}

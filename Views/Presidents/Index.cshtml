@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ElectoApp.Models.President>
+
+
+
+<h2>World Heads of States</h2>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+
+
+
+    <div id="accordion">
+        @foreach (var item in Model)
+        {
+
+            var base64 = Convert.ToBase64String(item.Photo);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+            <h3>President of <span> @Html.DisplayFor(modelItem => item.PresCountry)</span></h3>
+            <div>
+                <img class="imgindex" src="@imgSrc" />
+
+                <p><b>Name:</b>@Html.DisplayFor(modelItem => item.FullName)</p>
+
+                <p><b>Political Party:</b> @Html.DisplayFor(modelItem => item.PoliticalParty)</p>
+                <p><b>Elected on:</b> @Html.DisplayFor(modelItem => item.AssumedOffice)</p>
+
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.PresidentId">Read more..</a>
+            </div>
+        }
+    </div>
+
+}
+
+else
+{
+    <div id="accordion">
+        @foreach (var item in Model)
+        {
+
+            var base64 = Convert.ToBase64String(item.Photo);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+            <h3>President of <span> @Html.DisplayFor(modelItem => item.PresCountry)</span></h3>
+            <div>
+                <img class="imgindex" src="@imgSrc" />
+
+                <p><b>Name:</b>@Html.DisplayFor(modelItem => item.FullName)</p>
+
+                <p><b>Political Party:</b> @Html.DisplayFor(modelItem => item.PoliticalParty)</p>
+                <p><b>Elected on:</b> @Html.DisplayFor(modelItem => item.AssumedOffice)</p>
+
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.PresidentId">Read more..</a>
+            </div>
+        }
+    </div>
+
+
+}
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@section Scripts {
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#accordion").accordion();
+        });
+    </script>
+
+
+}

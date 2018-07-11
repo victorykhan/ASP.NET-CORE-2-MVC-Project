@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ElectoApp.Models.President>
+
+
+
+    @foreach (var item in Model)
+    {
+        
+
+
+
+        var base64 = Convert.ToBase64String(item.Photo);
+        var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+
+
+
+
+
+<div class="longnew">
+    <img class="imglong" src="@imgSrc" />
+    <h5>@Html.DisplayFor(modelItem => item.FullName)</h5>
+    <p class="title"></p>
+
+    <p>Assumed Office on:  @Html.DisplayFor(modelItem => item.AssumedOffice)</p>
+    @*<p>Country: @Html.DisplayFor(modelItem => item.PresCountry)</p>*@
+    @*<p>Political Party: @Html.DisplayFor(modelItem => item.PoliticalParty)</p>*@
+    <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.PresidentId">Get more info</a>
+
+
+</div>
+    }
+
+

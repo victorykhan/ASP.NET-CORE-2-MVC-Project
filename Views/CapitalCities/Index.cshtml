@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ElectoApp.Models.CapitalCity>
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h2>Capital Cities in the World</h2>
+    <p>
+        <a asp-action="Create">Add more records</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CapitalCityName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CapCountry)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CapitalCityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CapCountry)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CapitalCityId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CapitalCityId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CapitalCityId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else
+{
+    <h2>Capital Cities in the World</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CapitalCityName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CapCountry)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CapitalCityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CapCountry)
+                    </td>
+                    <td>
+                        
+                        <a asp-action="Details" asp-route-id="@item.CapitalCityId">Details</a> 
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

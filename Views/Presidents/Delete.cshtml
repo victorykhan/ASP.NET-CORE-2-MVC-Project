@@ -1,0 +1,81 @@
+﻿@model ElectoApp.Models.President
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>President</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AssumedOffice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AssumedOffice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficeTerms)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OfficeTerms)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecededBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecededBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PresCountry)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PresCountry)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PresCapital)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PresCapital)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PresContinent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PresContinent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PoliticalParty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoliticalParty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Publisher)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PresidentId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

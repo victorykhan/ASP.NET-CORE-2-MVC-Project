@@ -1,0 +1,291 @@
+﻿
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+
+
+            <img src="~/slider/sl1a.jpg" />
+            <div class="carousel-caption">
+                <h3>Los Angeles</h3>
+                <p>LA is always so much fun!</p>
+            </div>
+        </div>
+
+        <div class="item">
+
+            <img src="~/slider/sl2a.jpg" />
+            <div class="carousel-caption">
+                <h3>Chicago</h3>
+                <p>Thank you, Chicago!</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/slider/sl3a.jpg" />
+
+            <div class="carousel-caption">
+                <h3>New York</h3>
+                <p>We love the Big Apple!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="images/img3.jpg"> </div>
+<div class="midpage row">
+    <div class=" col-md-8 latest">
+
+        <svg height="100" width="800">
+            <text x="150" y="70"
+                  style="fill: #c506f3; stroke: #fb4804;  font-size: 29px;">
+                Recently Elected Presidents
+            </text>
+
+        </svg>
+        <div id="dvrecentpresi" class="flex-container">
+
+        </div>
+
+    </div>
+    <div class="col-md-4 latest">
+
+        <svg height="100" width="400">
+            <text x="0" y="70"
+                  style="fill: #ffd800; stroke: #fb4804;  font-size:29px;">
+                Longest Serving
+                Presidents
+            </text>
+
+        </svg>
+        <div id="dvlongpresi">
+
+        </div>
+
+    </div>
+</div>
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="images/img2.jpg"> </div>
+
+<hr id="electo" />
+<div class="elek page-header">
+    <svg height="140" width="1000">
+        <text x="200" y="100"
+              style="fill: #ff00dc; stroke: #ffd800;  font-size: 80px;">
+            Upcoming Elections
+        </text>
+
+    </svg>
+</div>
+<div class="upcomingelections">
+
+
+    <div class="col-lg-3" id="dvparl"></div>
+    <div class="col-lg-3" id="dvcong"></div>
+    <div class="col-lg-3" id="dvsenat"></div>
+    <div class="col-lg-3" id="dvpresi"></div>
+</div>
+
+
+
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="images/img1.jpg"> </div>
+
+
+
+
+
+    <div id="dialog-confirm"  class="coupon">
+        <div class="customer">
+            <h2>Electo App</h2>
+        </div>
+
+        <img src="~/images/coup.jpg" />
+        <div class="customer" style="background-color:white">
+            <h4><b>20% OFF YOUR PURCHASE</b></h4>
+            <p>Power corrupts, absolute power corrupts absolutely</p>
+        </div>
+        <div class="customer">
+            <p>Use Promo Code: <span class="promo">BOH232</span></p>
+            <p class="expire">Expires: Jan 03, 2019</p>
+        </div>
+    </div>
+    
+
+    
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function () {
+                $("#dialog-confirm").dialog({
+                    resizable: false,
+                    width: 600,
+                    modal: true,
+                    buttons: {
+                        "No Thanks": function () {
+                            $(this).dialog("close");
+                        },
+                        Yes: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
+
+
+        });
+    </script>
+
+    <script src="~/js/parallax.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            if ($('.parallax-window').length) {
+                $('.parallax-window').parallax();
+
+            }
+
+        });
+        $('.carousel').carousel();
+
+    </script>
+
+    <script type="text/javascript">
+
+
+
+        function LoadRecentPresidents() {
+            $.ajax
+                ({
+                    url: "/Presidents/GetRecentPresidents",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#dvrecentpresi").html(t)
+                    },
+                    error: function () {
+                        $("#dvrecentpresi").html("Data  Not Found")
+                    }
+                })
+        }
+        function LoadLongestPresidents() {
+            $.ajax
+                ({
+                    url: "/Presidents/GetLongestPresidents",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#dvlongpresi").html(t)
+                    },
+                    error: function () {
+                        $("#dvlongpresi").html("Data  Not Found")
+                    }
+                })
+        }
+        function LoadSenatElections() {
+            $.ajax
+                ({
+                    url: "/Elections/GetSenateElections",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#dvsenat").html(t)
+                    },
+                    error: function () {
+                        $("#dvsenat").html("Data  Not Found")
+                    }
+                })
+        }
+
+        function LoadPresiElections() {
+            $.ajax
+                ({
+                    url: "/Elections/GetPresidentElections",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#dvpresi").html(t)
+                    },
+                    error: function () {
+                        $("#dvpresi").html("Post Not Found")
+                    }
+                })
+        }
+        function LoadCongElections() {
+            $.ajax
+                ({
+                    url: "/Elections/GetCongressElections",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#dvcong").html(t)
+                    },
+                    error: function () {
+                        $("#dvcong").html("Post Not Found")
+                    }
+                })
+        }
+        function LoadParlElections() {
+            $.ajax
+                ({
+                    url: "/Elections/GetParliamentElections",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#dvparl").html(t)
+                    },
+                    error: function () {
+                        $("#dvparl").html("No upcoming Parliamentary elections")
+                    }
+                })
+        }
+
+        $(document).ready(function () {
+            LoadSenatElections(), LoadPresiElections(), LoadCongElections(), LoadParlElections(), LoadLongestPresidents(), LoadRecentPresidents()
+        });
+
+
+    </script>
+
+
+}

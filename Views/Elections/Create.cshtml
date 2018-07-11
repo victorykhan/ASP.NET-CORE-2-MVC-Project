@@ -1,0 +1,192 @@
+﻿@model ElectoApp.Models.Election
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Election</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ElectionType" class="control-label"></label>
+                <select id="ElectionType" asp-for="ElectionType" class="form-control" asp-items="Html.GetEnumSelectList<Electoral>()">
+                    <option selected="selected" value="">Please select electoral system</option>
+                </select>
+                <span asp-validation-for="ElectionType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreviousElectionDate" class="control-label"></label>
+                <input type="text" id="olddate" asp-for="PreviousElectionDate" class="form-control" />
+                
+                <span id="predate" asp-validation-for="PreviousElectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ElectionDate" class="control-label"></label>
+                <input type="text" id="newdate" asp-for="ElectionDate" class="form-control" disabled="disabled" />
+                <span id="uppydate" asp-validation-for="ElectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryName" class="control-label"></label>
+                <select asp-for="CountryName"
+                        id="CountryId"
+                        class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListOfCountry,"CountryId","CountryName"))" required disabled="disabled"></select>
+                <span asp-validation-for="CountryName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+
+                <input type="hidden" asp-for="PublisherId" class="form-control" value="@UserManager.GetUserName(User)" />
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input id="myvalidate"  value="Validate Form" class="btn btn-info" disabled="disabled" />
+            </div>
+            <div class="form-group">
+                <input id="mysubmit" type="submit" value="Submit Election" class="btn btn-success" disabled="disabled" />
+                <input id="reset" type="reset" value="Reset" class="btn btn-danger"  />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/dot-luv/jquery-ui.css">
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"
+            integrity="sha256-DI6NdAhhFRnO2k51mumYeDShet3I8AKCQf/tf7ARNhI="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#newdate").datepicker({
+                numberOfMonths: 1,
+                showButtonPanel: true
+            });
+
+            $("#olddate").datepicker({
+                numberOfMonths: 2,
+                showButtonPanel: true
+            });
+
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        //Election dates logic and validation
+
+        $(document).ready(function () {
+
+            var mytoday = new Date();
+            var previousDate = "";
+            var futureDate = "";
+
+            $("#olddate").change(function () {
+
+                previousDate = Date.parse($("#olddate").val());
+                $('#olddate').attr('readonly', true);
+                if (previousDate > mytoday) {
+                    $("#predate").text("This is not permissible, the previous election date did not take place in the FUTURE");
+
+
+                }
+                else {
+                    $("#newdate").removeAttr("disabled");
+                    $("#predate").text("The last elections took place on: " + $("#olddate").val());
+
+
+                }
+            });
+
+
+
+
+            $("#newdate").change(function () {
+
+                futureDate = Date.parse($("#newdate").val());
+
+                if (previousDate <= mytoday && futureDate > mytoday) {
+                    $("#CountryId").removeAttr("disabled");
+                    
+
+                }
+
+                if (futureDate < previousDate) {
+
+                    $("#predate").text("The previous election date cannot occur after the upcoming election date " + $("#newdate").val());
+                    $("#uppydate").text("The upcoming election date cannot occur before the last election date " + $("#olddate").val());
+                    //$("#newdate").attr("disabled");
+
+
+                }
+                else if (futureDate > previousDate) {
+
+                    $("#uppydate").text("The the next elections will hold  on: " + $("#newdate").val());
+                   
+
+                }
+
+                else {
+                    $("#newdate").attr("disabled");
+                    $("#predate").text("Not accepted, both events cannot hold on the same day");
+                }
+
+                
+
+                
+
+            });
+
+
+            $("#CountryId").click(function () {
+
+                if (previousDate <= mytoday && futureDate > mytoday) {
+                   
+                    $("#myvalidate").removeAttr("disabled");
+
+                }
+
+            });
+
+            $("#myvalidate").click(function () {
+                if (previousDate <= mytoday && futureDate > mytoday) {
+
+                    $("#mysubmit").removeAttr("disabled");
+
+                }
+
+                else {
+                    alert("You dates are not correct, fix the dates")
+
+                }
+               
+                
+            });
+
+           
+            
+
+        });
+                
+                
+            
+
+            
+
+        
+    </script>
+}

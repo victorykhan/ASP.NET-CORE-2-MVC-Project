@@ -1,0 +1,14 @@
+﻿@model ElectoApp.Models.Country
+
+<h2>Information about <span>@Html.DisplayFor(model => model.CountryName)</span></h2>
+
+<div>
+    
+    <hr />
+    
+    <button type="button" class="btn btn-primary">  <span class="badge">@Html.DisplayFor(model => model.CountryName)</span> is located in <span class="badge"> @Html.DisplayFor(model => model.CounContinent) </span></button>
+    </div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.CountryId">Edit</a> |*@
+    <a asp-action="Index">Back to List</a>
+</div>

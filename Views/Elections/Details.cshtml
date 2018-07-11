@@ -1,0 +1,55 @@
+﻿@model ElectoApp.Models.Election
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <div>
+        <h4>Election Time in @Html.DisplayFor(model => model.CountryName)</h4>
+        <hr />
+
+
+
+        <div class="card">
+            <div class="card-header">Election Types: @Html.DisplayFor(model => model.ElectionType)</div>
+            <div class="card-body">
+
+                <p class="card-text">Previous Elections: <span class="badge"> @Html.DisplayFor(model => model.PreviousElectionDate)</span></p>
+            </div>
+            <div class="card-footer">Next Elections: <span class="badge">@Html.DisplayFor(model => model.ElectionDate)</span></div>
+        </div>
+
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.ElectionId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+}
+else
+{
+    <div>
+        <h4>Election Time in @Html.DisplayFor(model => model.CountryName)</h4>
+        <hr />
+
+
+
+        <div class="card">
+            <div class="card-header">Election Types: @Html.DisplayFor(model => model.ElectionType)</div>
+            <div class="card-body">
+
+                <p class="card-text">Previous Elections: <span class="badge"> @Html.DisplayFor(model => model.PreviousElectionDate)</span></p>
+            </div>
+            <div class="card-footer">Next Elections: <span class="badge">@Html.DisplayFor(model => model.ElectionDate)</span></div>
+        </div>
+
+
+        <div>
+            @*<a asp-action="Edit" asp-route-id="@Model.ElectionId">Edit</a> |*@
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+}
